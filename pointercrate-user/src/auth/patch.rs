@@ -1,6 +1,6 @@
 use crate::{
     auth::AuthenticatedUser,
-    error::{Result, UserError},
+    error::Result,
     patch::PatchUser,
     User,
 };
@@ -70,7 +70,6 @@ impl AuthenticatedUser<PasswordOrBrowser> {
     async fn set_password(&mut self, password: String, connection: &mut PgConnection) -> Result<()> {
         match &mut self.auth_type {
             AuthenticationType::Legacy(legacy) => legacy.set_password(password, connection).await,
-            _ => Err(UserError::NonLegacyAccount),
         }
     }
 
