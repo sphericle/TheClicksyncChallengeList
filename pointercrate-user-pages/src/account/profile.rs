@@ -120,14 +120,12 @@ impl AccountPageTab for ProfileTab {
                         "Get access token"
                     }
                     p {
-                        "Your pointercrate access token allows you, or programs authorized by you, to make API calls on your behalf. They do not allow modifications of your account however."
+                        "Your pointercrate access token allows you, or programs authorized by you, to make API calls on your behalf. They do not allow modifications of your account however. "
                     }
-                    div.overlined.pad #token-area style = "display: none" {
-                        b {"Your access token is:"}
-                        textarea #access-token readonly="" style = "resize: none; width: 100%; margin-top: 8px; min-height:75px" {}
+                    p {
+                        "For security reasons, your token will not be displayed in plain text here. Once this button is clicked, the server will return your token in a POST request to auth/, which you can find in the 'network' tab in inspect element."
                     }
                     form.flex.col #get-token-form novalidate = "" {
-                        p.info-red.output {}
                         input.blue.hover.button type = "submit" style = "margin: 15px auto 0px;" value="Get access token";
                     }
                 }
