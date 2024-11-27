@@ -782,13 +782,11 @@ ul.selection-list li {
   /* Flex layout classes */
 
   .overlay {
-    background-color: rgba(85, 85, 85, 0.8);
+    background-color: rgba(20, 20, 20, 0.8);
   }
 
   .dialog {
     background-color: #414141;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
-    border: 1px lightgray dashed;
   }
 
   /* Panel styles */
@@ -797,27 +795,11 @@ ul.selection-list li {
     background: #414141;
   }
 
-  /* General Input Styles */
-  .form-input .error {
-    font-size: 60% !important;
-    color: coral;
-  }
-
   /* When the checkbox is checked, add a blue background */
   .cb-container input:checked ~ .checkmark {
     background-color: #0A95E6;
   }
 
-  /* Search UI Element */
-
-  .search {
-    border: 1px solid #999;
-  }
-
-  .search.seperated input {
-    border-left: 1px solid #888;
-    border-right: 1px solid #888;
-  }
 
   /* Dropdown selection menu thingy styles */
 
@@ -832,7 +814,6 @@ ul.selection-list li {
   }
 
   .dropdown-menu div:focus-within {
-    border: 1px solid #bbb;
     box-shadow: 0 0 10px 5px #6d6d6d;
   }
 
@@ -895,11 +876,6 @@ ul.selection-list li {
   ul.selection-list {
     border: 1px solid #999;
   }
-
-  /* Tab panel stuff */
-  .tab-active {
-    color: #0881c6;
-  } 
 
   .approved-info-label {
     background-color: rgba(198, 255, 161, 0.3);
