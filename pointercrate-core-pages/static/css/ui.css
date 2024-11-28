@@ -176,9 +176,9 @@ a {
   border: 1px lightgray dashed;
   padding: 10px;
   max-width: 600px;
-  overflow:auto;
-  max-height:100%;
-  box-sizing:border-box
+  overflow: auto;
+  max-height: 100%;
+  box-sizing: border-box;
 }
 
 .dialog p {
@@ -226,7 +226,8 @@ ul.roman li {
 
 /* General Input Styles */
 
-input, textarea {
+input,
+textarea {
   border-radius: 0;
 }
 
@@ -257,7 +258,7 @@ input[type="text"],
 input[type="number"],
 input[type="url"],
 input[type="password"],
-input[type="datetime-local"]{
+input[type="datetime-local"] {
   min-height: 1em;
   height: 2em;
 }
@@ -405,7 +406,7 @@ textarea:invalid {
   content: "\f078";
   position: absolute;
   right: 0;
-  top: .5em;
+  top: 0.5em;
 }
 
 .search input {
@@ -519,7 +520,7 @@ h2 .dropdown-menu ul {
 .dropdown-menu input[type="text"] {
   border: none;
   font-size: 1em;
-  width: 100%
+  width: 100%;
 }
 
 .dropdown-menu div:focus-within {
@@ -528,7 +529,8 @@ h2 .dropdown-menu ul {
   box-shadow: 0 0 10px 5px #ccc;
 }
 
-.dropdown-menu input:focus, .dropdown-menu input:invalid {
+.dropdown-menu input:focus,
+.dropdown-menu input:invalid {
   border: none;
 }
 
@@ -735,25 +737,25 @@ ul.selection-list li {
   color: #0881c6;
 }
 .click-to-select {
-  color: #444446; font-weight: bold;
+  color: #2d2d2d;
+  font-weight: bold;
 }
 
 .approved-info-label {
-  background-color: #E9FAE3;
+  background-color: #e9fae3;
 }
 
 .unchecked-info-label {
-  background-color: #F7F7E0;
+  background-color: #f7f7e0;
 }
 
 .rejected-info-label {
-  background-color: #F8DCE4;
+  background-color: #f8dce4;
 }
 
 .under-consideration-info-label {
   background-color: #d8eff3;
 }
-
 
 /* dark mode */
 @media (prefers-color-scheme: dark) {
@@ -773,11 +775,10 @@ ul.selection-list li {
     color: #f0f0f0;
   }
 
-  input, textarea {
+  input,
+  textarea {
     color: #e6e6e6 !important;
   }
-
-  
 
   /* Flex layout classes */
 
@@ -786,27 +787,27 @@ ul.selection-list li {
   }
 
   .dialog {
-    background-color: #414141;
+    background-color: #2d2d2d;
   }
 
   /* Panel styles */
 
   .panel {
-    background: #414141;
+    background: #2d2d2d;
   }
 
   /* When the checkbox is checked, add a blue background */
   .cb-container input:checked ~ .checkmark {
-    background-color: #0A95E6;
+    background-color: #0a95e6;
   }
-
 
   /* Dropdown selection menu thingy styles */
 
   .dropdown-menu .menu {
     background: #4e4e4e;
     border: 1px solid #bbb;
-    box-shadow: 0px 8px 10px #4e4e4e, -10px 8px 15px #4e4e4e, 10px 8px 15px #4e4e4e;
+    box-shadow: 0px 8px 10px #4e4e4e, -10px 8px 15px #4e4e4e,
+      10px 8px 15px #4e4e4e;
   }
 
   .dropdown-menu > div {
@@ -823,7 +824,7 @@ ul.selection-list li {
 
   .tooltip .tooltiptext {
     border: 3px solid #696969;
-    background: #414141;
+    background: #2d2d2d;
   }
 
   /* (Under)lines */
@@ -843,12 +844,12 @@ ul.selection-list li {
     border-top: 1px solid #e6e6e6;
   }
 
-  .menu .underlined  {
+  .menu .underlined {
     border-bottom: 1px solid #525252;
   }
 
   .menu ul {
-    background-color: #414141;
+    background-color: #2d2d2d;
   }
 
   .info-green {
@@ -880,15 +881,15 @@ ul.selection-list li {
   .approved-info-label {
     background-color: rgba(198, 255, 161, 0.3);
   }
-  
+
   .unchecked-info-label {
     background-color: rgba(255, 255, 161, 0.3);
   }
-  
+
   .rejected-info-label {
     background-color: rgba(255, 161, 174, 0.3);
   }
-  
+
   .under-consideration-info-label {
     background-color: rgba(142, 230, 230, 0.3);
   }

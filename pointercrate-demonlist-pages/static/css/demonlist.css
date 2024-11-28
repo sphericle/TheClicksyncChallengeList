@@ -221,7 +221,7 @@ tr:nth-child(even) {
 /* dark mode */
 @media (prefers-color-scheme: dark) {
   .dropdown {
-    background: #414141;
+    background: #2d2d2d;
   }
 
   tr {

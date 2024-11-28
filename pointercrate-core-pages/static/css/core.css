@@ -44,7 +44,6 @@
   }
 }
 
-
 .clickable {
   cursor: pointer;
 }
@@ -103,7 +102,7 @@
 
 .white {
   background-color: white;
-  color: #444446;
+  color: #2d2d2d;
 }
 
 .white.hover:not(.disabled):not([disabled]):hover,
@@ -184,13 +183,13 @@
   /* color modifying styles */
 
   .blue {
-    background-color: #0A95E6;
+    background-color: #0a95e6;
     color: white;
   }
 
   .white {
-    background-color: #444446;
-    color: #FFFFFF;
+    background-color: #2d2d2d;
+    color: #ffffff;
   }
 
   .white.hover:not(.disabled):not([disabled]):hover,

@@ -240,11 +240,10 @@ footer * {
 /* dark mode */
 @media (prefers-color-scheme: dark) {
   header nav {
-    background: #444446;
+    background: #2d2d2d;
   }
 
   header nav .nav-group .nav-hover-dropdown {
     border: 1px solid rgba(211, 211, 211, 0.28);
   }
-  
 }
