@@ -242,4 +242,9 @@ footer * {
   header nav {
     background: #444446;
   }
+
+  header nav .nav-group .nav-hover-dropdown {
+    border: 1px solid rgba(211, 211, 211, 0.28);
+  }
+  
 }
