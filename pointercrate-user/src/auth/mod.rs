@@ -194,9 +194,8 @@ impl AuthenticatedUser<NoAuth> {
     }
 
     pub fn verify_password(self, password: &str) -> Result<AuthenticatedUser<PasswordOrBrowser>> {
-        match &self.auth_type {
-            AuthenticationType::Legacy(legacy) => legacy.verify(password)?,
-            _ => return Err(CoreError::Unauthorized.into()),
+        match self.auth_type {
+            AuthenticationType::Legacy(ref legacy) => legacy.verify(password)?,
         }
 
         Ok(AuthenticatedUser {

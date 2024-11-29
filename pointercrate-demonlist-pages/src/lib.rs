@@ -42,7 +42,7 @@ static LEGACY_SECTION: ListSection = ListSection {
 */
 
 fn dropdowns(all_demons: &[&Demon], current: Option<&Demon>) -> Markup {
-    let (main, extended, legacy) = if all_demons.len() < config::list_size() as usize {
+    let (main, _extended, _legacy) = if all_demons.len() < config::list_size() as usize {
         (all_demons, Default::default(), Default::default())
     } else {
         let (extended, legacy) = if all_demons.len() < config::extended_list_size() as usize {
@@ -134,7 +134,7 @@ fn rules_panel() -> Markup {
             p {
                 "Read this before submitting a challenge or record to ensure a flawless experience."
             }
-            a.blue.hover.button href = "https://docs.google.com/document/d/1zW2tOWRi-qTxd2pM2FrParnVTzJjzRiGKIGGSJycKuI/edit?usp=sharing" {
+            a.blue.hover.button target = "_blank" href = "https://docs.google.com/document/d/1zW2tOWRi-qTxd2pM2FrParnVTzJjzRiGKIGGSJycKuI/edit?usp=sharing" {
                 "Read the guidelines!"
             }
         }
@@ -150,7 +150,7 @@ fn nongs_panel() -> Markup {
             p {
                 "Some challenges have songs that aren't on " a.link href = {"https://www.newgrounds.com"} {"Newgrounds"} ", so you can find all NONG songs in this Google Drive folder."
             }
-            a.blue.hover.button href = "https://drive.google.com/drive/folders/1_P5D7jKT8oUcjk_vzWt5riqouOnnwRqB?usp=sharing" {
+            a.blue.hover.button target = "_blank" href = "https://drive.google.com/drive/folders/1_P5D7jKT8oUcjk_vzWt5riqouOnnwRqB?usp=sharing" {
                 "Find a nong!"
             }
         }
