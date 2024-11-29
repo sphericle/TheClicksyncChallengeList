@@ -183,6 +183,38 @@ fn record_manager(demons: &[Demon]) -> Markup {
     }
 }
 
+fn status_selector() -> Markup {
+    // FIXME: no vec
+    let dropdown_items = vec![
+        html! {
+            li.white.hover data-value = "approved" {"Approved"}
+        },
+        html! {
+            li.white.hover data-value = "submitted" {"Submitted"}
+        },
+        html! {
+            li.white.hover data-value = "rejected" {"Rejected"}
+        },
+        html! {
+            li.white.hover data-value = "under consideration" {"Under Consideration"}
+        },
+    ];
+
+    html! {
+        div.panel.fade #status-filter-panel style = "overflow: visible" {
+            h2.underlined.pad {
+                "Filter"
+            }
+            p {
+                "Filter by record status"
+            }
+            (dropdown("All", html! {
+                li.white.hover.underlined data-value = "All" {"All"}
+            }, dropdown_items.into_iter()))
+        }
+    }
+}
+
 fn manager_help() -> Markup {
     html! {
         div.panel.fade {
@@ -225,38 +257,6 @@ fn manager_help() -> Markup {
                 b { "Note: " }
                 "The 'Submit a Record' button on this page will automatically set the record's status to 'approved'."
             }
-        }
-    }
-}
-
-fn status_selector() -> Markup {
-    // FIXME: no vec
-    let dropdown_items = vec![
-        html! {
-            li.white.hover data-value = "approved" {"Approved"}
-        },
-        html! {
-            li.white.hover data-value = "submitted" {"Submitted"}
-        },
-        html! {
-            li.white.hover data-value = "rejected" {"Rejected"}
-        },
-        html! {
-            li.white.hover data-value = "under consideration" {"Under Consideration"}
-        },
-    ];
-
-    html! {
-        div.panel.fade #status-filter-panel style = "overflow: visible" {
-            h2.underlined.pad {
-                "Filter"
-            }
-            p {
-                "Filter by record status"
-            }
-            (dropdown("All", html! {
-                li.white.hover.underlined data-value = "All" {"All"}
-            }, dropdown_items.into_iter()))
         }
     }
 }
