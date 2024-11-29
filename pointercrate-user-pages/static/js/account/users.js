@@ -23,7 +23,9 @@ function setupPatchUserPermissionsForm() {
         "If-Match": selectedUser.etag,
       },
       {
-        permissions: editForm.inputs.map(input => input.value * parseInt(input.span.dataset.bit)).reduce((a,b) => a+b, 0)
+        permissions: editForm.inputs
+          .map((input) => input.value * parseInt(input.span.dataset.bit))
+          .reduce((a, b) => a + b, 0),
       }
     )
       .then((response) => {
@@ -114,12 +116,12 @@ class UserPaginator extends FilteredPaginator {
       editForm.setError(
         "This is your own account. You cannot modify your own account using this interface!"
       );
-      for(let btn of this.output.html.getElementsByTagName("input")) {
+      for (let btn of this.output.html.getElementsByTagName("input")) {
         btn.classList.add("disabled");
         btn.disabled = true;
       }
     } else {
-      for(let btn of this.output.html.getElementsByTagName("input")) {
+      for (let btn of this.output.html.getElementsByTagName("input")) {
         btn.classList.remove("disabled");
         btn.disabled = false;
       }
@@ -132,7 +134,7 @@ class UserPaginator extends FilteredPaginator {
 
     let bitmask = selectedUser.permissions;
 
-    for(let input of editForm.inputs) {
+    for (let input of editForm.inputs) {
       let bit = parseInt(input.span.dataset.bit);
 
       input.value = (bitmask & bit) === bit;

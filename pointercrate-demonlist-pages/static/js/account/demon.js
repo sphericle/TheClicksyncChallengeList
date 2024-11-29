@@ -17,7 +17,9 @@ import {
   del,
   displayError,
   Form,
-  post, setupEditorDialog, FormDialog,
+  post,
+  setupEditorDialog,
+  FormDialog,
 } from "/static/core/js/modules/form.js";
 
 export let demonManager;
@@ -57,10 +59,10 @@ export class DemonManager extends FilteredPaginator {
     );
 
     let thumbnailForm = setupFormDialogEditor(
-        new PaginatorEditorBackend(this, false),
-        "demon-thumbnail-dialog",
-        "demon-thumbnail-pen",
-        this.output
+      new PaginatorEditorBackend(this, false),
+      "demon-thumbnail-dialog",
+      "demon-thumbnail-pen",
+      this.output
     );
 
     thumbnailForm.addValidators({
@@ -73,11 +75,6 @@ export class DemonManager extends FilteredPaginator {
     for (let errorCode of [42222, 42223, 42224, 42225]) {
       videoForm.addErrorOverride(errorCode, "demon-video-edit");
     }
-
-    
-
-    
-
 
     let positionForm = setupFormDialogEditor(
       new PaginatorEditorBackend(this, true),
@@ -199,20 +196,23 @@ export class DemonManager extends FilteredPaginator {
         })
         .catch(displayError(this.output));
     });
-  }       
+  }
 }
 
 function deleteDemon(demon_id) {
-  
-    if (confirm("Are you sure? This will irrevocably delete this level and all its records!")) {
-      demonManager.output.setSuccess("Deleting, please wait...");
-      del("/api/v2/demons/" + demon_id + "/")
-        .then(() => {
-          demonManager.output.setSuccess("This demon has been deleted.");
-          demonManager.refresh(); 
-        })
-        .catch(displayError(output))
-    }
+  if (
+    confirm(
+      "Are you sure? This will irrevocably delete this level and all its records!"
+    )
+  ) {
+    demonManager.output.setSuccess("Deleting, please wait...");
+    del("/api/v2/demons/" + demon_id + "/")
+      .then(() => {
+        demonManager.output.setSuccess("This demon has been deleted.");
+        demonManager.refresh();
+      })
+      .catch(displayError(output));
+  }
 }
 
 function insertCreatorInto(creator, container) {
@@ -225,10 +225,6 @@ function insertCreatorInto(creator, container) {
   container.prepend(html);
   return html;
 }
-
-
-
-
 
 function createCreatorHtml(creator) {
   let span = document.createElement("span");
@@ -264,9 +260,9 @@ function setupDemonAdditionForm() {
 
   form.addValidators({
     "demon-add-name": { "Please specify a name": valueMissing },
-    "demon-add-level-id": { 
-      "Please specify a Geometry Dash level ID": valueMissing, 
-      "Level ID must be positive": rangeUnderflow
+    "demon-add-level-id": {
+      "Please specify a Geometry Dash level ID": valueMissing,
+      "Level ID must be positive": rangeUnderflow,
     },
     "demon-add-position": {
       "Please specify a position": valueMissing,
@@ -275,7 +271,8 @@ function setupDemonAdditionForm() {
       "Demon position must be integer": stepMismatch,
     },
     "demon-add-requirement": {
-      "Please specify a requirement for record progress on this demon": valueMissing,
+      "Please specify a requirement for record progress on this demon":
+        valueMissing,
       "Record requirement cannot be smaller than 0%": rangeUnderflow,
       "Record requirement cannot be greater than 100%": rangeOverflow,
       "Record requirement must be a valid integer": badInput,
@@ -297,7 +294,8 @@ function setupDemonAdditionForm() {
       .then(() => {
         form.setSuccess(
           `Successfully added demon!\n\n
-          ${data["name"]} by ${form.creators} has been placed at #${data["position"]}, above  and below  .`);
+          ${data["name"]} by ${form.creators} has been placed at #${data["position"]}, above  and below  .`
+        );
         demonManager.refresh();
         form.clear();
       })
@@ -322,51 +320,49 @@ export function initialize() {
   button1.addEventListener("click", () => {
     creatorFormDialog.submissionPredicateFactory = (data) => {
       return post(
-          "/api/v2/demons/" + demonManager.currentObject.id + "/creators/",
-          {},
-          data
+        "/api/v2/demons/" + demonManager.currentObject.id + "/creators/",
+        {},
+        data
       )
-          .then((response) => {
-            let location = response.headers["location"];
+        .then((response) => {
+          let location = response.headers["location"];
 
-            demonManager.addCreator({
-              name: data.creator,
-              id: location.substring(
-                  location.lastIndexOf("/", location.length - 2) + 1,
-                  location.length - 1
-              ),
-            });
-            
-          })
-          .catch(response => {
-            displayError(creatorFormDialog.form)(response);
-            throw response;
+          demonManager.addCreator({
+            name: data.creator,
+            id: location.substring(
+              location.lastIndexOf("/", location.length - 2) + 1,
+              location.length - 1
+            ),
           });
-    }
+        })
+        .catch((response) => {
+          displayError(creatorFormDialog.form)(response);
+          throw response;
+        });
+    };
     creatorFormDialog.open();
   });
 
   button2.addEventListener("click", () => {
-    creatorFormDialog.submissionPredicateFactory = (data) => new Promise(resolve => resolve(data));
-    creatorFormDialog.open()
-        .then(data => {
-          let creator = insertCreatorInto({ name: data.creator }, dialogCreators);
-          creator.children[0].addEventListener("click", () => {
-            addDemonForm.creators.splice(
-                addDemonForm.creators.indexOf(data.creator),
-                1
-            );
-            dialogCreators.removeChild(creator);
-          });
+    creatorFormDialog.submissionPredicateFactory = (data) =>
+      new Promise((resolve) => resolve(data));
+    creatorFormDialog.open().then((data) => {
+      let creator = insertCreatorInto({ name: data.creator }, dialogCreators);
+      creator.children[0].addEventListener("click", () => {
+        addDemonForm.creators.splice(
+          addDemonForm.creators.indexOf(data.creator),
+          1
+        );
+        dialogCreators.removeChild(creator);
+      });
 
-          addDemonForm.creators.push(data.creator);
-        });
+      addDemonForm.creators.push(data.creator);
+    });
   });
 
-  let demon_x = document.getElementById("demon_x")
+  let demon_x = document.getElementById("demon_x");
 
   demon_x.addEventListener("click", () => {
     deleteDemon(demonManager.currentObject.id);
   });
-  
 }

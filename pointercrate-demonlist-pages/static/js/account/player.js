@@ -1,4 +1,8 @@
-import {generatePlayer, getSubdivisionFlag, populateSubdivisionDropdown} from "/static/demonlist/js/modules/demonlist.js";
+import {
+  generatePlayer,
+  getSubdivisionFlag,
+  populateSubdivisionDropdown,
+} from "/static/demonlist/js/modules/demonlist.js";
 import {
   displayError,
   Form,
@@ -7,7 +11,8 @@ import {
   setupFormDialogEditor,
   PaginatorEditorBackend,
   setupDropdownEditor,
-  Viewer, get,
+  Viewer,
+  get,
 } from "/static/core/js/modules/form.js";
 import { recordManager, initialize as initRecords } from "./records.js";
 
@@ -42,11 +47,11 @@ class PlayerManager extends FilteredPaginator {
     );
 
     this._subdivision = setupDropdownEditor(
-        new PaginatorEditorBackend(this, true),
-        "edit-player-subdivision",
-        "subdivision",
-        this.output,
-        { None: null }
+      new PaginatorEditorBackend(this, true),
+      "edit-player-subdivision",
+      "subdivision",
+      this.output,
+      { None: null }
     );
 
     this.initNameDialog();
@@ -69,11 +74,16 @@ class PlayerManager extends FilteredPaginator {
         this.currentObject.nationality.country_code
       );
 
-      populateSubdivisionDropdown(this._subdivision, this.currentObject.nationality.country_code).then(() => {
-        if(!this.currentObject.nationality.subdivision) {
+      populateSubdivisionDropdown(
+        this._subdivision,
+        this.currentObject.nationality.country_code
+      ).then(() => {
+        if (!this.currentObject.nationality.subdivision) {
           this._subdivision.selectSilently("None");
         } else {
-          this._subdivision.selectSilently(this.currentObject.nationality.subdivision.iso_code);
+          this._subdivision.selectSilently(
+            this.currentObject.nationality.subdivision.iso_code
+          );
         }
       });
     } else {

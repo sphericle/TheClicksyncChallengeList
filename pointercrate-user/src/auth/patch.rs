@@ -1,9 +1,4 @@
-use crate::{
-    auth::AuthenticatedUser,
-    error::Result,
-    patch::PatchUser,
-    User,
-};
+use crate::{auth::AuthenticatedUser, error::Result, patch::PatchUser, User};
 use pointercrate_core::{
     error::CoreError,
     util::{non_nullable, nullable},

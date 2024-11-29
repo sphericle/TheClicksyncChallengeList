@@ -16,8 +16,8 @@ import {
   setupFormDialogEditor,
   Output,
   setupDropdownEditor,
-  PaginatorEditorBackend, 
-  setupEditorDialog, 
+  PaginatorEditorBackend,
+  setupEditorDialog,
   DropdownDialog,
   FormDialog,
 } from "/static/core/js/modules/form.js";
@@ -74,7 +74,6 @@ class RecordManager extends Paginator {
       this.output
     );
 
-    
     this.initVideoDialog();
     setupEditorDialog(
       new FormDialog("record-holder-dialog"),
@@ -88,17 +87,26 @@ class RecordManager extends Paginator {
       "record-enjoyment-pen",
       new PaginatorEditorBackend(this, true),
       this.output
-    )
+    );
     this.initDemonDialog();
 
-    document.getElementById("record-copy-info").addEventListener('click', () => {
-      navigator.clipboard.writeText(this.currentObject.id + ", " + this._holder.innerText + ", " + this.currentObject.video)
-          .then(() => this.output.setSuccess("Copied record data to clipboard!"))
+    document
+      .getElementById("record-copy-info")
+      .addEventListener("click", () => {
+        navigator.clipboard
+          .writeText(
+            this.currentObject.id +
+              ", " +
+              this._holder.innerText +
+              ", " +
+              this.currentObject.video
+          )
+          .then(() =>
+            this.output.setSuccess("Copied record data to clipboard!")
+          )
           .catch(() => this.output.setError("Error copying to clipboard"));
-    });
+      });
   }
-
-  
 
   initVideoDialog() {
     let form = setupFormDialogEditor(
@@ -143,7 +151,7 @@ class RecordManager extends Paginator {
       "record-demon-pen",
       new PaginatorEditorBackend(this, true),
       this.output,
-      demonId => ({demon_id: parseInt(demonId)})
+      (demonId) => ({ demon_id: parseInt(demonId) })
     );
   }
 
@@ -163,7 +171,7 @@ class RecordManager extends Paginator {
       this._video.style.display = "none";
     }
 
-    if(this.currentObject.video !== undefined) {
+    if (this.currentObject.video !== undefined) {
       this._video_link.href = this.currentObject.video;
       this._video_link.innerHTML = this.currentObject.video;
       this._video_link.style.display = "initial";
@@ -171,14 +179,14 @@ class RecordManager extends Paginator {
       this._video_link.style.display = "none";
     }
 
-    if(this.currentObject.raw_footage !== undefined) {
+    if (this.currentObject.raw_footage !== undefined) {
       this._raw_footage_link.href = this.currentObject.raw_footage;
       this._raw_footage_link.innerHTML = this.currentObject.raw_footage;
       this._raw_footage_link.style.display = "initial";
     } else {
       this._raw_footage_link.style.display = "none";
     }
-    
+
     this._id.innerHTML = this.currentObject.id;
     this._demon.innerHTML =
       this.currentObject.demon.name + " (" + this.currentObject.demon.id + ")";
@@ -192,19 +200,20 @@ class RecordManager extends Paginator {
     this._enjoyment.innerHTML = this.currentObject.enjoyment;
 
     // this is introducing race conditions. Oh well.
-    return get("/api/v1/records/" + this.currentObject.id + "/notes").then(response => {
-      // clear notes
-      while (this._notes.firstChild) {
-        this._notes.removeChild(this._notes.firstChild);
-      }
+    return get("/api/v1/records/" + this.currentObject.id + "/notes").then(
+      (response) => {
+        // clear notes
+        while (this._notes.firstChild) {
+          this._notes.removeChild(this._notes.firstChild);
+        }
 
-      for (let note of response.data) {
-        this._notes.appendChild(createNoteHtml(note));
-      }
-      
+        for (let note of response.data) {
+          this._notes.appendChild(createNoteHtml(note));
+        }
 
-      $(this._notes.parentElement).show(300); // TODO: maybe via CSS transform?
-    })
+        $(this._notes.parentElement).show(300); // TODO: maybe via CSS transform?
+      }
+    );
   }
 }
 
@@ -264,10 +273,11 @@ function createNoteHtml(note) {
   }
 
   if (note.transferred) {
-    furtherInfo.innerHTML += "This not was not originally left on this record. ";
+    furtherInfo.innerHTML +=
+      "This not was not originally left on this record. ";
   }
 
-  if(note.is_public) {
+  if (note.is_public) {
     furtherInfo.innerHTML += "This note is public. ";
   }
 
@@ -317,7 +327,10 @@ function setupRecordFilterPlayerIdForm() {
 
   recordFilterPlayerIdForm.onSubmit(function () {
     // reset search filter if player ID field is empty
-    recordManager.updateQueryData("player", valueMissing(playerId) ? playerId.value : undefined);
+    recordManager.updateQueryData(
+      "player",
+      valueMissing(playerId) ? playerId.value : undefined
+    );
   });
 }
 
@@ -350,7 +363,7 @@ function setupRecordFilterPlayerNameForm() {
       // Player name field is empty, so reset search filter
       recordManager.updateQueryData("player", undefined);
     } else {
-        get("/api/v1/players/?name=" + playerName.value)
+      get("/api/v1/players/?name=" + playerName.value)
         .then((response) => {
           let json = response.data;
 
@@ -361,7 +374,7 @@ function setupRecordFilterPlayerNameForm() {
           }
         })
         .catch(displayError(recordFilterPlayerNameForm));
-      }
+    }
   });
 }
 

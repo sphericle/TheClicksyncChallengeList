@@ -45,10 +45,11 @@ class ProfileEditorBackend extends EditorBackend {
   }
 
   headers() {
-    let headers = {"If-Match": window.etag}
-    if (this._pw) 
-      headers["Authorization"] = "Basic " + btoa(window.username + ":" + this._pw.value);
-    return headers
+    let headers = { "If-Match": window.etag };
+    if (this._pw)
+      headers["Authorization"] =
+        "Basic " + btoa(window.username + ":" + this._pw.value);
+    return headers;
   }
 
   onSuccess(response) {
@@ -111,13 +112,16 @@ function setupEditAccount() {
     changePasswordForm.addValidators({
       "auth-pw": {
         "Password required": valueMissing,
-        "Password too short. It needs to be at least 10 characters long.": tooShort,
+        "Password too short. It needs to be at least 10 characters long.":
+          tooShort,
       },
       "edit-pw": {
-        "Password too short. It needs to be at least 10 characters long.": tooShort,
+        "Password too short. It needs to be at least 10 characters long.":
+          tooShort,
       },
       "edit-pw-repeat": {
-        "Password too short. It needs to be at least 10 characters long.": tooShort,
+        "Password too short. It needs to be at least 10 characters long.":
+          tooShort,
         "Passwords don't match": (rpp) => rpp.value == editPw.value,
       },
     });
