@@ -68,7 +68,6 @@ impl AccountPageTab for RecordsPage {
                     }
                     div #record-notes {} // populated by javascript when a record is clicked
                 }
-                (manager_help())
             }
             div.right {
                 (status_selector())
