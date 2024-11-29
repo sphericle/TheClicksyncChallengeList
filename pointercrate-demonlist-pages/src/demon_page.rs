@@ -362,7 +362,7 @@ impl DemonPage {
                         }
                         br;
                         @if avg_enjoyment > 0.0 {
-                            (format!("{:?}/10", avg_enjoyment))
+                            (format!("{:.0}/10", avg_enjoyment))
 
                         }
                         @else {
