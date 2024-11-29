@@ -216,7 +216,7 @@ impl DemonPage {
             }
         }
 
-        let avg_enjoyment: f32 = total_enjoyment as f32 / with_enjoyment as f32;
+        let avg_enjoyment: f32 = (total_enjoyment as f32 / with_enjoyment as f32).round();
 
         html! {
             section.panel.fade.js-scroll-anim data-anim = "fade" {
