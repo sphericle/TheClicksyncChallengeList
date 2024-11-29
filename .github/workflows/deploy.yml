@@ -38,7 +38,7 @@ jobs:
       # Restart project (optional)
       - name: Restart project
         run: |
-          cargo shuttle project restart --idle-minutes 0 --ad --name cscl
+          cargo shuttle project restart --idle-minutes 0 --name cscl
         env:
           SHUTTLE_API_KEY: ${{ secrets.SHUTTLE_API_KEY }}
         shell: bash
@@ -46,7 +46,7 @@ jobs:
       # Deploy to Shuttle
       - name: Deploy to Shuttle
         run: |
-          cargo shuttle deploy --name cscl --nt
+          cargo shuttle deploy --name cscl --nt --ad
         env:
           SHUTTLE_API_KEY: ${{ secrets.SHUTTLE_API_KEY }}
         shell: bash
