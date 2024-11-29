@@ -1,14 +1,14 @@
 name: Format
 
-# Runs `cargo fmt` (Rust formatter) and `prettier` (JS formatter) whenever code is pushed or pr'd into master. 
+# Runs `cargo fmt` (Rust formatter) and `prettier` (JS formatter) whenever code is pushed or pr'd into main. 
 
 on: 
   push:
     branches: 
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
     types: 
       - closed
   workflow_dispatch:
