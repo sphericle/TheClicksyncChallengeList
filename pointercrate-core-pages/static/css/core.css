@@ -44,7 +44,6 @@
   }
 }
 
-
 .clickable {
   cursor: pointer;
 }
@@ -103,7 +102,7 @@
 
 .white {
   background-color: white;
-  color: #444446;
+  color: #2d2d2d;
 }
 
 .white.hover:not(.disabled):not([disabled]):hover,
@@ -162,6 +161,62 @@
 .green.hover:not(.disabled):not([disabled]):active,
 .green.active {
   background: #5ba324;
+}
+
+.logo-css {
+  height: 1.3rem;
+  content: url("/static/core/thecscl.png");
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #292929;
+    color: #e6e6e6;
+  }
+
+  .fade {
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    border: 1px #999999 dashed;
+  }
+
+  /* color modifying styles */
+
+  .blue {
+    background-color: #0a95e6;
+    color: white;
+  }
+
+  .white {
+    background-color: #2d2d2d;
+    color: #ffffff;
+  }
+
+  .white.hover:not(.disabled):not([disabled]):hover,
+  .white.active {
+    background-color: #616161;
+    color: #fff;
+  }
+
+  .white.hover:not(.disabled):not([disabled]):active {
+    background-color: #5a5a5a;
+    color: #f0eeee;
+  }
+
+  .red {
+    background: #fc426d;
+    color: white;
+  }
+
+  .red.hover:not(.disabled):not([disabled]):hover,
+  .red.active {
+    background: #e22b56;
+  }
+
+  .red.hover:not(.disabled):not([disabled]):active,
+  .red.active {
+    background: #c7274c;
+  }
 }
 
 /* size modifying styles */
