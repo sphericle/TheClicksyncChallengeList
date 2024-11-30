@@ -24,6 +24,15 @@ jobs:
         run: |
           echo ${{ secrets.SECRET_THING }} > .secret
 
+      # Cache cargo-binstall and cargo-shuttle
+      - name: Cache cargo-binstall and cargo-shuttle
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-binstall
+          restore-keys: |
+            ${{ runner.os }}-cargo-binstall
+
       # Install cargo-binstall
       - name: Install cargo-binstall
         run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
@@ -50,3 +59,4 @@ jobs:
         env:
           SHUTTLE_API_KEY: ${{ secrets.SHUTTLE_API_KEY }}
         shell: bash
+
