@@ -14,7 +14,7 @@ use pointercrate_demonlist_pages::account::{
 };
 use pointercrate_user::MODERATOR;
 use pointercrate_user_pages::account::{profile::ProfileTab, users::UsersTab, AccountPageConfig};
-use rocket::{build, catch, fs::FileServer, response::Redirect, uri, Rocket};
+use rocket::{build, catch, fs::FileServer, Rocket};
 
 #[catch(404)]
 fn catch_404() -> ErrorResponder {
@@ -34,7 +34,7 @@ fn catch_401() -> ErrorResponder {
 
 
 #[rocket::get("/")]
-pub fn home() -> Page {
+fn home() -> Page {
     Page::new(pointercrate_demonlist_pages::home::home_page())
 }
 
