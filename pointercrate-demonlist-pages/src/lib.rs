@@ -7,6 +7,7 @@ pub mod components;
 pub mod demon_page;
 pub mod overview;
 pub mod statsviewer;
+pub mod home;
 
 struct ListSection {
     name: &'static str,

@@ -2,7 +2,7 @@ use dotenv::dotenv;
 use maud::html;
 use pointercrate_core::error::CoreError;
 use pointercrate_core::pool::PointercratePool;
-use pointercrate_core_api::{error::ErrorResponder, maintenance::MaintenanceFairing};
+use pointercrate_core_api::{error::ErrorResponder, maintenance::MaintenanceFairing, response::Page};
 use pointercrate_core_pages::{
     footer::{Footer, FooterColumn, Link},
     navigation::{NavigationBar, TopLevelNavigationBarItem},
@@ -32,10 +32,12 @@ fn catch_401() -> ErrorResponder {
     CoreError::Unauthorized.into()
 }
 
+
 #[rocket::get("/")]
-fn home() -> Redirect {
-    Redirect::to(uri!("/list/"))
+pub fn home() -> Page {
+    Page::new(pointercrate_demonlist_pages::home::home_page())
 }
+
 
 async fn configure_rocket() -> Result<Rocket<rocket::Build>, Box<dyn std::error::Error>> {
     dotenv::dotenv().unwrap();

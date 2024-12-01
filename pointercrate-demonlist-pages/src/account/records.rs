@@ -214,52 +214,6 @@ fn status_selector() -> Markup {
     }
 }
 
-fn manager_help() -> Markup {
-    html! {
-        div.panel.fade {
-            h1.underlined.pad {
-                "Manage Records"
-            }
-            p {
-                "Use the list on the left to select records for editing/viewing. Use the panel on the right to filter the record list by status, player, etc.. Clicking the 'All levels' field at the top allows to filter by level."
-            }
-            p {
-                "There are four possible record states a record can be in: " i { "'rejected', 'approved', 'submitted'" } " and " i { "'under consideration'" } ". For simplicity of explanation we will assume that 'Bob' is a player and 'Cataclysm' is a level he has a record on."
-                ul {
-                    li {
-                        b{"Rejected: "} "If the record is 'rejected', it means that Bob has no other record in other states on Cataclysm and no submissions for Bob on Cataclysm are possible. Conversely, this means if Bob has a record on Catalysm that's not rejected, we immediately know that no rejected record for Bob on Cataclysm exists. "
-                        br;
-                        "Rejecting any record of Bob's on Cataclysm will delete all other record's of Bob on Cataclysm to ensure the above uniqueness"
-                    }
-                    li {
-                        b{"Approved: "} "If the record is 'approved', it means that no submissions with less progress than the 'approved' record exist or are permitted."
-                        br;
-                        "Changing a record to 'approved' will delete all submissions for Bob on Cataclysm with less progress"
-                    }
-                    li {
-                        b {"Submitted: "} "If the record is 'submitted', no further constraints on uniqueness are in place. This means that multiple submissions for Bob on Cataclysm are possible, as long as they provide different video links. However, due to the above, all duplicates are deleted as soon as one of the submissions is accepted or rejected"
-                    }
-                    li {
-                        b {"Under Consideration: "} "If the record is 'under consideration' it is conceptually still a submission. The only difference is, that no more submissions for Bob on Cataclysm are allowed now."
-                    }
-                }
-            }
-            p {
-                b { "Note: " }
-                "If a player is banned, they cannot have accepted/submitted records on the list. All records marked as 'submitted' are deleted, all others are changed to 'rejected'"
-            }
-            p {
-                b { "Note: " }
-                "Banning a submitter will delete all their submissions that still have the status 'Submitted'. Records submitted by them that were already accepted/rejected will not be affected"
-            }
-            p {
-                b { "Note: " }
-                "The 'Submit a Record' button on this page will automatically set the record's status to 'approved'."
-            }
-        }
-    }
-}
-
 fn player_selector() -> Markup {
     html! {
         div.panel.fade {
