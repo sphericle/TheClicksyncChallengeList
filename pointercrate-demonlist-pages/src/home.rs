@@ -17,10 +17,12 @@ fn home_page_html() -> Markup {
     html! {
         div.panel.fade {
             h1.underlined.pad {
-                "p"
+                "The Clicksync Challenge List"
             }
 
-            p {}
+            p {
+                "Welcome to the CSCL!"
+            }
         }
     }
 }
