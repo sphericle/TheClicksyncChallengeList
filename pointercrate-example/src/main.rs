@@ -37,8 +37,6 @@ fn catch_401() -> ErrorResponder {
 fn home() -> Page {
     Page::new(pointercrate_demonlist_pages::home::home_page())
 }
-
-
 async fn configure_rocket() -> Result<Rocket<rocket::Build>, Box<dyn std::error::Error>> {
     dotenv::dotenv().unwrap();
 
