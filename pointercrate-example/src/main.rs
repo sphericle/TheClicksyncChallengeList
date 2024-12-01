@@ -14,7 +14,7 @@ use pointercrate_demonlist_pages::account::{
 };
 use pointercrate_user::MODERATOR;
 use pointercrate_user_pages::account::{profile::ProfileTab, users::UsersTab, AccountPageConfig};
-use rocket::{build, catch, fs::FileServer, response::Redirect, uri, Rocket};
+use rocket::{build, catch, fs::FileServer, Rocket};
 
 #[catch(404)]
 fn catch_404() -> ErrorResponder {
@@ -36,7 +36,6 @@ fn catch_401() -> ErrorResponder {
 fn home() -> Redirect {
     Redirect::to(uri!("/list/"))
 }
-
 async fn configure_rocket() -> Result<Rocket<rocket::Build>, Box<dyn std::error::Error>> {
     dotenv::dotenv().unwrap();
 
