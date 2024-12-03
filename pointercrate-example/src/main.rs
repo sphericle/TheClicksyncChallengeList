@@ -14,7 +14,7 @@ use pointercrate_demonlist_pages::account::{
 };
 use pointercrate_user::MODERATOR;
 use pointercrate_user_pages::account::{profile::ProfileTab, users::UsersTab, AccountPageConfig};
-use rocket::{build, catch, fs::FileServer, Rocket};
+use rocket::{build, catch, fs::FileServer, response::Redirect, uri, Rocket};
 
 #[catch(404)]
 fn catch_404() -> ErrorResponder {
