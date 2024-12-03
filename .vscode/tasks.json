@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "local shuttle",
+            "label": "localhost crate",
             "type": "shell",
-            "command": "cargo shuttle run",
+            "command": "cargo r",
             "problemMatcher": [],
             "group": {
                 "kind": "build",

@@ -17,13 +17,14 @@ struct ListSection {
 }
 
 static MAIN_SECTION: ListSection = ListSection {
-    name: "Search for a challenge here!",
-    description: "",
+    name: "Main List",
+    description: "The main section of the list. Records are accepted above a \
+                  given threshold and award more points!",
     id: "mainlist",
     numbered: true,
 };
 
-/* static EXTENDED_SECTION: ListSection = ListSection {
+static EXTENDED_SECTION: ListSection = ListSection {
     name: "Extended List",
     description: "These are demons that dont qualify for the main section of the list, but are still of high relevance. Only 100% records \
                   are accepted for these demons! Note that non-100% that were submitted/approved before a demon fell off the main list \
@@ -32,6 +33,7 @@ static MAIN_SECTION: ListSection = ListSection {
     numbered: true,
 };
 
+/*
 static LEGACY_SECTION: ListSection = ListSection {
     name: "Legacy List",
     description: "These are demons that used to be on the list, but got pushed off as new demons were added. They are here for nostalgic \
@@ -43,7 +45,7 @@ static LEGACY_SECTION: ListSection = ListSection {
 */
 
 fn dropdowns(all_demons: &[&Demon], current: Option<&Demon>) -> Markup {
-    let (main, _extended, _legacy) = if all_demons.len() < config::list_size() as usize {
+    let (main, extended, _legacy) = if all_demons.len() < config::list_size() as usize {
         (all_demons, Default::default(), Default::default())
     } else {
         let (extended, legacy) = if all_demons.len() < config::extended_list_size() as usize {
@@ -60,14 +62,10 @@ fn dropdowns(all_demons: &[&Demon], current: Option<&Demon>) -> Markup {
 
     html! {
         nav.flex.wrap.m-center.fade #lists style="text-align: center;" {
-             // The drop down for the main list:
+            // The drop down for the main list:
             (dropdown(&MAIN_SECTION, main, current))
             // The drop down for the extended list:
-            /*
             (dropdown(&EXTENDED_SECTION, extended, current))
-            // The drop down for the legacy list:
-            (dropdown(&LEGACY_SECTION, legacy, current))
-            */
         }
     }
 }
