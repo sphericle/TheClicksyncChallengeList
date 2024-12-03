@@ -1,5 +1,6 @@
 use dotenv::dotenv;
 use maud::html;
+
 use pointercrate_core::error::CoreError;
 use pointercrate_core::pool::PointercratePool;
 use pointercrate_core_api::{error::ErrorResponder, maintenance::MaintenanceFairing, response::Page};
@@ -8,10 +9,12 @@ use pointercrate_core_pages::{
     navigation::{NavigationBar, TopLevelNavigationBarItem},
     PageConfiguration,
 };
+
 use pointercrate_demonlist::LIST_ADMINISTRATOR;
 use pointercrate_demonlist_pages::account::{
     demons::DemonsTab, list_integration::ListIntegrationTab, players::PlayersPage, records::RecordsPage,
 };
+
 use pointercrate_user::MODERATOR;
 use pointercrate_user_pages::account::{profile::ProfileTab, users::UsersTab, AccountPageConfig};
 use rocket::{build, catch, fs::FileServer, Rocket};
