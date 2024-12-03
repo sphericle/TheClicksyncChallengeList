@@ -5,9 +5,9 @@ use pointercrate_demonlist::{config, demon::Demon};
 pub mod account;
 pub mod components;
 pub mod demon_page;
+pub mod home;
 pub mod overview;
 pub mod statsviewer;
-pub mod home;
 
 struct ListSection {
     name: &'static str,

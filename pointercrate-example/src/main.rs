@@ -32,7 +32,6 @@ fn catch_401() -> ErrorResponder {
     CoreError::Unauthorized.into()
 }
 
-
 #[rocket::get("/")]
 fn home() -> Page {
     Page::new(pointercrate_demonlist_pages::home::home_page())
