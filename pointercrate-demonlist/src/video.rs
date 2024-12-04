@@ -109,7 +109,7 @@ pub fn validate(url: &str) -> Result<String> {
             "medal.tv" | "www.medal.tv" => {
                 if let Some(path_segments) = url.path_segments() {
                     match &path_segments.collect::<Vec<_>>()[..] {
-                        ["games", "geometry-dash", "clips", video_id] => {
+                        ["games", "geometry-dash", "clips", video_id, _extra] => {
                             Ok(format!("https://medal.tv/games/geometry-dash/clips/{}", video_id))
                         },
                         _ => Err(CoreError::InvalidUrlFormat { expected: MEDAL_FORMAT }.into()),
