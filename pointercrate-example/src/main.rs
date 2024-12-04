@@ -13,7 +13,7 @@ use pointercrate_demonlist_pages::account::{
 };
 use pointercrate_user::MODERATOR;
 use pointercrate_user_pages::account::{profile::ProfileTab, users::UsersTab, AccountPageConfig};
-use rocket::{fs::FileServer, response::Redirect, uri};
+use rocket::fs::FileServer;
 
 /// A catcher for 404 errors (e.g. when a user tried to navigate to a URL that
 /// does not exist)

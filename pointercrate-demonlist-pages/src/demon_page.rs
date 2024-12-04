@@ -513,6 +513,7 @@ fn host(video: &str) -> &str {
         "everyplay.com" => "Everyplay",
         "www.bilibili.com" => "Bilibili",
         "vimeo.com" => "Vimeo",
+        "medal.tv" => "Medal",
         host => panic!("{}", host),
     }
 }
