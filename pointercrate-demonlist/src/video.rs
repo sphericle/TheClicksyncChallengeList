@@ -14,6 +14,7 @@ const TWITCH_FORMAT: &str = "https://www.twitch.tv/videos/{video_id}' or \
 const EVERYPLAY_FORMAT: &str = "https://everyplay.com/videos/{video_id}' or'https://www.everyplay.com/videos/{video_id}";
 const VIMEO_FORMAT: &str = "https://vimeo.com/{video_id}' or'https://www.vimeo.com/{video_id}";
 const BILIBILI_FORMAT: &str = "'https://www.bilibili.com/video/{video_id}' or'https://bilibili.com/video/{video_id}";
+const MEDAL_FORMAT: &str = "'https://medal.tv/games/geometry-dash/clips/{video_id}' or'https://www.medal.tv/games/geometry-dash/clips/{video_id}'";
 
 pub fn validate(url: &str) -> Result<String> {
     let url = Url::parse(url).map_err(|_| DemonlistError::MalformedVideoUrl)?;
@@ -101,6 +102,18 @@ pub fn validate(url: &str) -> Result<String> {
                     }
                 } else {
                     Err(CoreError::InvalidUrlFormat { expected: VIMEO_FORMAT }.into())
+                }
+            },
+            // medal tv format: format!("https://medal.tv/games/geometry-dash/clips/{}", video_id)
+
+            "medal.tv" | "www.medal.tv" => {
+                if let Some(path_segments) = url.path_segments() {
+                    match &path_segments.collect::<Vec<_>>()[..] {
+                        ["games", "geometry-dash", "clips", video_id] => Ok(format!("https://medal.tv/games/geometry-dash/clips/{}", video_id)),
+                        _ => Err(CoreError::InvalidUrlFormat { expected: MEDAL_FORMAT }.into()),
+                    }
+                } else {
+                    Err(CoreError::InvalidUrlFormat { expected: MEDAL_FORMAT }.into())
                 }
             },
             _ => Err(DemonlistError::UnsupportedVideoHost),

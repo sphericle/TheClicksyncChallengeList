@@ -1,7 +1,7 @@
 pub fn list_size() -> i16 {
-    100
+    500
 }
 
 pub fn extended_list_size() -> i16 {
-    200
+    1000
 }
