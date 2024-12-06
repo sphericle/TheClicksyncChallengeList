@@ -48,16 +48,16 @@ fn login_page_body() -> Markup {
     html! {
         div.m-center.flex.panel.fade.col.wrap style = "margin: 100px 0px;"{
             h1.underlined.pad {
-                "Pointercrate Account"
+                "Register / Login"
             }
             p {
-                "By using pointercrate accounts you agree to cookies. If you don't then I formally request you to stop using the internet as you obviously have no idea what you're talking about. "
+                "By using accounts you agree to cookies. If you don't then I formally request you to stop using the internet as you obviously have no idea what you're talking about. "
             }
             div.flex #login {
                 div.flex.col {
                     h2 {"Login"}
                     p {
-                        "Log in to an existing pointercrate account. You have 3 login attempts every 30 minutes. If you do not have an account yet, register on the right or below. "
+                        "Log in to an existing account. You have 3 login attempts every 30 minutes. If you do not have an account yet, register on the right or below. "
                     }
                     form.flex.col.grow #login-form novalidate = "" {
                         p.info-red.output {}
