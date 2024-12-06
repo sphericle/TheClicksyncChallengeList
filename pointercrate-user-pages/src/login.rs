@@ -3,8 +3,8 @@ use pointercrate_core_pages::{head::HeadLike, PageFragment};
 
 pub fn login_page() -> PageFragment {
     PageFragment::new(
-        "Pointercrate - Login",
-        "Log in to an existing pointercrate account or register for a new one!",
+        "Login",
+        "Log in to an existing account or register for a new one!",
     )
     .module("/static/user/js/login.js")
     .module("/static/core/js/modules/form.js")
@@ -18,7 +18,7 @@ fn login_page_body() -> Markup {
             div.flex.col {
                 h2 {"Register"}
                 p {
-                    "Not registered yet? Create a new pointercrate account below."
+                    "Not registered yet? Create a new account below."
                 }
                 form.flex.col.grow #register-form novalidate = "" {
                     p.info-red.output {}
