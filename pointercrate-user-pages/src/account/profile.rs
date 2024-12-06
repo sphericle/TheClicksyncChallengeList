@@ -53,7 +53,7 @@ impl AccountPageTab for ProfileTab {
                             }
                             (user.name)
                             p {
-                                "The name you registered under and which you use to log in to pointercrate. This name is unique to your account, and cannot be changed"
+                                "The name you registered under and which you use to log in. This name is unique to your account, and cannot be changed"
                             }
                         }
                         span {
@@ -67,7 +67,7 @@ impl AccountPageTab for ProfileTab {
                                 }
                             }
                             p {
-                                "If set, this name will be displayed instead of your username. Display names aren't unique and you cannot use your display name to login to your pointercrate account."
+                                "If set, this name will be displayed instead of your username. Display names aren't unique and you cannot use your display name to login to your account."
                             }
                         }
                         span {
