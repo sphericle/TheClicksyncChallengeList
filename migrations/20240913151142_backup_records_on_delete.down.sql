@@ -1,1 +1,0 @@
-/* DROP TABLE rec_backup */
