@@ -102,7 +102,7 @@ async fn rocket() -> _ {
     let rocket = rocket.manage(account_page_config);
 
     // Changing `false` to `true` here will put your website into "maintenance mode", which will disable all mutating request handlers and always return 503 SERVICE UNAVAILABLE responses for non-GET requests.
-    let rocket = rocket.attach(MaintenanceFairing::new(false));
+    let rocket = rocket.attach(MaintenanceFairing::new(true));
 
     // Register all the endpoints related to the demonlist to our server (this is
     // optional, but without registering the demonlist related endpoint your website
